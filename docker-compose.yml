@@ -1,0 +1,19 @@
+services:
+
+  api:
+    container_name: "api"
+    build: ./api
+    ports:
+      - 80:5000
+    depends_on:
+      - database
+
+  database:
+    container_name: "database"
+    build: ./sql
+    restart: always
+    ports: 
+      - "3307:3307"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=beer
